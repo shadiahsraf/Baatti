@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>مؤتمر صيف 2026 - إسكندرية</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --abyss:    #020f1e;
+      --deep:     #03213f;
+      --mid:      #064273;
+      --surface:  #0e6b9e;
+      --shimmer:  #3ab0d8;
+      --foam:     #a8e4f5;
+      --glow-color: #7de8ff;
+      --white: #e8f8ff;
+    }
+
+    html, body {
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    body {
+      font-family: 'Tajawal', sans-serif;
+      background:
+        /* caustic light patches near surface */
+        radial-gradient(ellipse 60% 30% at 30% 15%, rgba(62,185,220,0.18) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 20% at 75% 8%,  rgba(100,210,240,0.12) 0%, transparent 60%),
+        /* deep ocean vertical gradient */
+        linear-gradient(
+          to bottom,
+          #0b2e4a 0%,
+          #083456 18%,
+          #054070 38%,
+          #02507a 55%,
+          #016080 70%,
+          #017585 85%,
+          #018a90 100%
+        );
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    /* Animated shimmer light rays from above */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 65%;
+      background:
+        repeating-linear-gradient(
+          105deg,
+          transparent 0%,
+          transparent 6%,
+          rgba(130,220,255,0.04) 6.5%,
+          transparent 7%
+        ),
+        repeating-linear-gradient(
+          80deg,
+          transparent 0%,
+          transparent 10%,
+          rgba(100,200,240,0.05) 10.5%,
+          transparent 11%
+        );
+      animation: rays 8s ease-in-out infinite alternate;
+      pointer-events: none;
+    }
+
+    @keyframes rays {
+      0%   { opacity: 0.6; transform: skewX(-2deg) scaleX(1); }
+      100% { opacity: 1;   transform: skewX(2deg)  scaleX(1.04); }
+    }
+
+    /* Deep water glow at bottom */
+    body::after {
+      content: '';
+      position: fixed;
+      bottom: 0; left: 0;
+      width: 100%; height: 45%;
+      background: radial-gradient(ellipse 80% 60% at 50% 110%, rgba(0,160,180,0.25) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* Wave layers */
+    .waves {
+      position: fixed;
+      bottom: 0; left: 0;
+      width: 100%;
+      pointer-events: none;
+      line-height: 0;
+    }
+
+    /* Card container */
+    .card {
+      position: relative;
+      text-align: center;
+      padding: 3.5rem 4rem 3rem;
+      background: rgba(5, 40, 70, 0.45);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(100, 210, 255, 0.2);
+      border-radius: 32px;
+      box-shadow:
+        0 8px 60px rgba(0,0,0,0.5),
+        0 0 0 1px rgba(60,180,220,0.08) inset,
+        0 1px 0 rgba(150,230,255,0.15) inset;
+      max-width: 520px;
+      width: 90%;
+      animation: fadeUp 0.9s cubic-bezier(0.22,1,0.36,1) both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Top title */
+    .title {
+      font-size: clamp(0.85rem, 2.5vw, 1.05rem);
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      color: rgba(255, 253, 248, 0.75);
+      text-transform: uppercase;
+      margin-bottom: 2.2rem;
+      animation: fadeUp 0.9s 0.1s cubic-bezier(0.22,1,0.36,1) both;
+    }
+
+    /* The BIG number */
+    .number {
+      font-size: clamp(9rem, 28vw, 14rem);
+      font-weight: 900;
+      line-height: 1;
+      color: var(--glow-color);
+      text-shadow:
+        0 0 20px rgba(125, 232, 255, 0.95),
+        0 0 60px rgba(80, 210, 245, 0.7),
+        0 0 120px rgba(40, 180, 230, 0.4),
+        0 4px 24px rgba(0,0,0,0.5);
+      animation:
+        fadeUp 0.9s 0.2s cubic-bezier(0.22,1,0.36,1) both,
+        pulse 3.5s 1.2s ease-in-out infinite;
+      display: block;
+    }
+
+    @keyframes pulse {
+      0%, 100% { text-shadow:
+        0 0 20px rgba(125, 232, 255, 0.95),
+        0 0 60px rgba(80, 210, 245, 0.7),
+        0 0 120px rgba(40, 180, 230, 0.4),
+        0 4px 24px rgba(0,0,0,0.5); }
+      50% { text-shadow:
+        0 0 40px rgba(160, 245, 255, 1),
+        0 0 100px rgba(100, 225, 255, 0.9),
+        0 0 180px rgba(60, 200, 240, 0.6),
+        0 4px 24px rgba(0,0,0,0.5); }
+    }
+
+    /* Subtitle under number */
+    .subtitle {
+      font-size: clamp(1rem, 3.5vw, 1.3rem);
+      font-weight: 300;
+      color: rgba(200, 240, 255, 0.85);
+      letter-spacing: 0.04em;
+      margin-top: 1rem;
+      animation: fadeUp 0.9s 0.35s cubic-bezier(0.22,1,0.36,1) both;
+    }
+
+    /* Divider */
+    .divider {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(125,232,255,0.55), transparent);
+      margin: 0 auto 2rem;
+      animation: fadeUp 0.9s 0.4s both;
+    }
+
+    /* Floating bubbles */
+    .dots {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .dot {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid rgba(140, 220, 255, 0.3);
+      background: rgba(80, 190, 230, 0.07);
+      animation: float linear infinite;
+    }
+
+    .dot:nth-child(1) { width: 10px; height: 10px; left: 8%;  bottom: -10px; animation-duration: 13s; animation-delay: 0s; }
+    .dot:nth-child(2) { width: 6px;  height: 6px;  left: 22%; bottom: -10px; animation-duration: 9s;  animation-delay: 2s; }
+    .dot:nth-child(3) { width: 14px; height: 14px; left: 47%; bottom: -10px; animation-duration: 16s; animation-delay: 1s; }
+    .dot:nth-child(4) { width: 7px;  height: 7px;  left: 68%; bottom: -10px; animation-duration: 11s; animation-delay: 3.5s; }
+    .dot:nth-child(5) { width: 11px; height: 11px; left: 85%; bottom: -10px; animation-duration: 12s; animation-delay: 0.8s; }
+    .dot:nth-child(6) { width: 5px;  height: 5px;  left: 35%; bottom: -10px; animation-duration: 10s; animation-delay: 4.5s; }
+    .dot:nth-child(7) { width: 8px;  height: 8px;  left: 58%; bottom: -10px; animation-duration: 14s; animation-delay: 1.8s; }
+
+    @keyframes float {
+      0%   { transform: translateY(0)    translateX(0);   opacity: 0; }
+      10%  { opacity: 0.8; }
+      90%  { opacity: 0.4; }
+      100% { transform: translateY(-105vh) translateX(15px); opacity: 0; }
+    }
+
+    /* Responsive tweaks */
+    @media (max-width: 480px) {
+      .card {
+        padding: 2.5rem 2rem 2.2rem;
+        border-radius: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Animated wave layers -->
+  <div class="waves" aria-hidden="true">
+    <svg viewBox="0 0 1440 140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="width:100%;display:block;">
+      <path fill="rgba(2,20,45,0.55)" d="M0,90 C240,40 480,130 720,85 C960,40 1200,110 1440,70 L1440,140 L0,140 Z">
+        <animate attributeName="d" dur="9s" repeatCount="indefinite"
+          values="
+            M0,90 C240,40 480,130 720,85 C960,40 1200,110 1440,70 L1440,140 L0,140 Z;
+            M0,70 C200,110 500,50 720,95 C940,140 1200,60 1440,90 L1440,140 L0,140 Z;
+            M0,90 C240,40 480,130 720,85 C960,40 1200,110 1440,70 L1440,140 L0,140 Z
+          "/>
+      </path>
+      <path fill="rgba(1,12,30,0.7)" d="M0,110 C300,70 600,140 900,100 C1100,70 1300,120 1440,95 L1440,140 L0,140 Z">
+        <animate attributeName="d" dur="13s" repeatCount="indefinite"
+          values="
+            M0,110 C300,70 600,140 900,100 C1100,70 1300,120 1440,95 L1440,140 L0,140 Z;
+            M0,95 C350,130 650,80 900,115 C1100,140 1250,90 1440,110 L1440,140 L0,140 Z;
+            M0,110 C300,70 600,140 900,100 C1100,70 1300,120 1440,95 L1440,140 L0,140 Z
+          "/>
+      </path>
+    </svg>
+  </div>
+
+  <!-- Floating bubbles -->
+  <div class="dots" aria-hidden="true">
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+  </div>
+
+  <div class="card">
+    <p class="title">مؤتمر صيف 2026 &mdash; إسكندرية</p>
+    <span class="number">34</span>
+    <div class="divider"></div>
+    <p class="subtitle">فاضل أماكن قليلة</p>
+  </div>
+
+</body>
+</html>
